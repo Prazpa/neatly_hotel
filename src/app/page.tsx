@@ -6,6 +6,7 @@ import Introduction from "./home/Introduction";
 import Service from "./home/Service";
 import Rooms from "./home/Rooms";
 import Footer from "@/components/Footer/Footer";
+import Review from "./home/Review";
 
 
 export default function Homepage() {
@@ -17,6 +18,7 @@ export default function Homepage() {
       <Introduction id="introduction"/>
       <Service id="service"/>
       <Rooms id="rooms"/>
+      <Review />
       <Footer />
     </div>
   );

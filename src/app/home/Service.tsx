@@ -10,7 +10,7 @@ interface idProps {
 function Service({ id }: idProps) {
   return (
     <div id={id}>
-        <div className="h-[480px] bg-[#465C50] px-[80px]">
+        <div className="h-[480px] bg-[#465C50] px-[80px] py-[50px]">
         <span
           className={`${noto.className} flex h-[220px] w-auto justify-center px-[60px] py-[50px] text-center text-[60px] text-white`}
         >

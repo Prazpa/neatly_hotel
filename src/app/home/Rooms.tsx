@@ -11,7 +11,7 @@ interface idProps {
 
 function Rooms({ id }: idProps) {
   return (
-    <div id={id} className="h-auto w-full bg-white py-[50px] flex flex-col items-center ">
+    <div id={id} className=" h-auto w-full bg-white py-[80px] flex flex-col items-center ">
       <div>
         <span className={`${noto.className} text-[60px]`}>Rooms & Suites</span>
       </div>

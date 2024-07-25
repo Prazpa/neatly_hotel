@@ -1,18 +1,76 @@
+import Link from "next/link";
 import React from "react";
+import { Noto_Serif } from "next/font/google";
 
+
+const noto = Noto_Serif({ subsets: ["latin"] });
 function Footer() {
   return (
     <div className="h-[485px] w-full bg-[#2F3E35] px-[80px] py-[50px] text-white">
-      <div className="flex h-[300px] gap-[100px]">
-        <div>
-          <h1>Neatly</h1>
-          <span>Neatly Hotel</span>
-          <span>The best hotel for rising your experience</span>
+      <div className="flex h-[300px] gap-[300px]">
+        <div className="flex flex-col gap-[20px]">
+          <div className="flex">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width={40}
+              height={40}
+              viewBox="0 0 512 512"
+            >
+              <defs>
+                <linearGradient
+                  id="meteoconsStarFill0"
+                  x1={187.9}
+                  x2={324.1}
+                  y1={138.1}
+                  y2={373.9}
+                  gradientUnits="userSpaceOnUse"
+                >
+                  <stop offset={0} stopColor="#E76B39"></stop>
+                  <stop offset={0.5} stopColor="#E76B39"></stop>
+                  <stop offset={1} stopColor="#E76B39fccd34"></stop>
+                </linearGradient>
+              </defs>
+              <path
+                fill="url(#meteoconsStarFill0)"
+                stroke="#E76B39"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={4}
+                d="m105.7 263.5l107.5 29.9a7.9 7.9 0 0 1 5.4 5.4l29.9 107.5a7.8 7.8 0 0 0 15 0l29.9-107.5a7.9 7.9 0 0 1 5.4-5.4l107.5-29.9a7.8 7.8 0 0 0 0-15l-107.5-29.9a7.9 7.9 0 0 1-5.4-5.4l-29.9-107.5a7.8 7.8 0 0 0-15 0l-29.9 107.5a7.9 7.9 0 0 1-5.4 5.4l-107.5 29.9a7.8 7.8 0 0 0 0 15Z"
+              >
+                <animateTransform
+                  additive="sum"
+                  attributeName="transform"
+                  calcMode="spline"
+                  dur="6s"
+                  keySplines=".42, 0, .58, 1; .42, 0, .58, 1"
+                  repeatCount="indefinite"
+                  type="rotate"
+                  values="-15 256 256; 15 256 256; -15 256 256"
+                ></animateTransform>
+                <animate
+                  attributeName="opacity"
+                  dur="6s"
+                  values="1; .75; 1; .75; 1; .75; 1"
+                ></animate>
+              </path>
+            </svg>
+            <Link
+              href={"#cover"}
+              className={`${noto.className} text-[30px] font-bold text-[#2F3E35] text-inherit`}
+            >
+              NEATLY
+            </Link>
+          </div>
+          <div className="flex flex-col gap-[40px]">
+            <span>Neatly Hotel</span>
+            <span>The best hotel for rising your experience</span>
+          </div>
         </div>
 
-        <div>
+        <div className="flex flex-col gap-[20px] w-[500px]">
           <h1>Contact</h1>
-          <div className="flex">
+          <div className="flex items-center gap-[10px]">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width={40}
@@ -27,7 +85,7 @@ function Footer() {
             <span>+66 99 999 9999</span>
           </div>
 
-          <div className="flex">
+          <div className="flex items-center gap-[15px]">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width={40}
@@ -42,7 +100,7 @@ function Footer() {
             <span>contact@neatlyhotel.com</span>
           </div>
 
-          <div className="flex">
+          <div className="flex items-center gap-[30px]">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width={40}
@@ -72,11 +130,12 @@ function Footer() {
               188 Phaya Thia Rd, Thung Phaya Thai, Ratchathewi, Bangkok 10400
             </span>
           </div>
+
         </div>
       </div>
-
+      <hr/>
       {/* logo */}
-      <div className="flex justify-between">
+      <div className="flex justify-between items-end py-0">
         <div className="flex">
           {/* Facebook */}
           <div>
@@ -123,6 +182,7 @@ function Footer() {
             </svg>
           </div>
         </div>
+
         <div>
           <span>Copyright © 2022 Neatly Hotel</span>
         </div>
