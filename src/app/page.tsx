@@ -18,8 +18,6 @@ export default function Homepage() {
       <Service id="service"/>
       <Rooms id="rooms"/>
       <Footer />
-      div
-      
     </div>
   );
 }
