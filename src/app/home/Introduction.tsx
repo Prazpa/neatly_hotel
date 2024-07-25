@@ -1,22 +1,29 @@
-import React from 'react'
+import React from "react";
+
+
+import Image from "next/image";
 import slice1 from "/home/prapakorn/doc/neatly_hotel/public/slice1.jpg";
 import slice2 from "/home/prapakorn/doc/neatly_hotel/public/slice2.jpg";
 import slice3 from "/home/prapakorn/doc/neatly_hotel/public/slice3.jpg";
-import Image from "next/image";
+
 import { Noto_Serif } from "next/font/google";
 
 export const noto = Noto_Serif({ subsets: ["latin"] });
 
-const Introduction = () => {
+interface idProps {
+  id: string;
+}
+
+const Introduction = ({ id }: idProps) => {
   return (
-    <div>
-        <div className="h-[1178px] w-full bg-white py-[100px]">
+    <div id={id}>
+      <div className="h-[1178px] w-full bg-white py-[100px]">
         <span
           className={`${noto.className} h-[220px] w-auto px-[80px] text-center text-[60px] text-black`}
         >
           Neatly
         </span>
-        <p className="mx-[200px] w-[1000px]">
+        <p className="mx-[200px] my-[50px] w-[1000px]">
           Set in Bangkok, Thailand. Neatly Hotel offers 5-star accommodation
           with an outdoor pool, kids' club, sports facilities and a fitness
           centre. There is also a spa, an indoor pool and saunas.
@@ -34,13 +41,11 @@ const Introduction = () => {
         </p>
 
         <div className="flex justify-around py-[50px]">
-          <Image src={slice1} alt="1" width={300} height={500} />
-          <Image src={slice2} alt="1" width={300} height={500} />
-          <Image src={slice3} alt="1" width={300} height={500} />
+          
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Introduction
+export default Introduction;

@@ -1,20 +1,16 @@
 import Link from "next/link";
 import React from "react";
-import {
-  Navbar,
-  NavbarBrand,
-  NavbarContent,
-  NavbarItem,
-  Button,
-} from "@nextui-org/react";
+import { Navbar, NavbarBrand, NavbarContent, NavbarItem, Button, } from "@nextui-org/react";
 import { Noto_Serif } from "next/font/google";
 
 const noto = Noto_Serif({ subsets: ["latin"] });
 
+const hoverStyle = `hover:border hover:border-white hover:rounded-lg hover:border-[3px]`
+
 const NavbarComponent = () => {
   return (
-    <Navbar className="h-[100px]">
-      <NavbarBrand className={noto.className}>
+    <Navbar className="h-[100px] flex justify-center">
+      <NavbarBrand className={noto.className} >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width={40}
@@ -60,25 +56,17 @@ const NavbarComponent = () => {
             ></animate>
           </path>
         </svg>
-        <p className={`text-3xl font-bold text-[#2F3E35] text-inherit`}>
-          NEATLY
-        </p>
+        <Link href={"#cover"} className={`${hoverStyle} text-3xl font-bold text-[#2F3E35] text-inherit`}>NEATLY</Link>
       </NavbarBrand>
       <NavbarContent className="hidden gap-5 sm:flex" justify="center">
         <NavbarItem>
-          <Link color="foreground" href="#" className="text-sm">
-            About Neatly
-          </Link>
+          <Link color="foreground" href="#introduction" className={`hover:underline text-sm`}>About Neatly</Link>
         </NavbarItem>
         <NavbarItem>
-          <Link color="foreground" href="#" className="text-sm">
-            Service & Facilities
-          </Link>
+          <Link color="foreground" href="#service" className={`hover:underline text-sm`}>Service & Facilities</Link>
         </NavbarItem>
         <NavbarItem>
-          <Link color="foreground" href="#" className="text-sm">
-            Room & Suites
-          </Link>
+          <Link color="foreground" href="#rooms" className={`hover:underline  text-sm`}>Room & Suites</Link>
         </NavbarItem>
       </NavbarContent>
       <NavbarContent justify="end">
@@ -87,7 +75,7 @@ const NavbarComponent = () => {
           color="primary"
           href="/login"
           variant="flat"
-          className="text-orange-600 text-sm"
+          className={`${hoverStyle } text-orange-600 text-sm`}
         >
           Login
         </Button>

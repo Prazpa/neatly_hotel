@@ -2,9 +2,14 @@ import React from 'react'
 import { Noto_Serif } from "next/font/google";
 
 const noto = Noto_Serif({ subsets: ["latin"] });
-function Service() {
+
+interface idProps {
+  id: string;
+}
+
+function Service({ id }: idProps) {
   return (
-    <div>
+    <div id={id}>
         <div className="h-[480px] bg-[#465C50]">
         <span
           className={`${noto.className} flex h-[220px] w-auto justify-center px-[60px] py-[50px] text-center text-[88px] font-semibold text-white`}
