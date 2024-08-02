@@ -6,3 +6,5 @@ export const GET = async (req: NextRequest, res: NextResponse) => {
     { status: 200 }
   );
 };
+
+
