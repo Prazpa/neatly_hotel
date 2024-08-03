@@ -56,7 +56,7 @@ const NavbarComponent = () => {
             ></animate>
           </path>
         </svg>
-        <Link href={"#cover"} className={`${hoverStyle} text-3xl font-bold text-[#2F3E35] text-inherit`}>NEATLY</Link>
+        <Link href={"/"} className={`${hoverStyle} text-3xl font-bold text-[#2F3E35] text-inherit`}>NEATLY</Link>
       </NavbarBrand>
       <NavbarContent className="hidden gap-5 sm:flex" justify="center">
         <NavbarItem>

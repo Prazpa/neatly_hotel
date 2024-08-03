@@ -12,15 +12,13 @@ const config: Config = {
     extend: {
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
-          
+        "gradient-conic": "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
         'cover': "url('/cover.jpg')",
       },
     },
   },
   darkMode: "class",
   plugins: [nextui()],
-  plugins: [],
 };
+
 export default config;

@@ -37,15 +37,17 @@ const Cover = ({ id }: idProps) => {
           />
         </div>
 
-        {/* select options will be fetch later*/}
         <div>
           <span>Room and Guests</span>
-          <Select className="h-[48px] w-[240px] rounded-lg border border-gray-500 text-gray-400">
+          <Select
+            className="h-[48px] w-[240px] rounded-lg border border-gray-500 text-gray-400"
+            aria-label="Room and Guests"
+          >
             <SelectItem key="1" className="bg-white">
-              1 room 1,guests
+              1 room, 1 guest
             </SelectItem>
             <SelectItem key="2" className="bg-white">
-              1 room 2,guests
+              1 room, 2 guests
             </SelectItem>
           </Select>
         </div>
