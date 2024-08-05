@@ -1,10 +1,8 @@
 import Link from "next/link";
 import React from "react";
-import { Noto_Serif } from "next/font/google";
+import noto from "@/assets/fonts"
 
-
-const noto = Noto_Serif({ subsets: ["latin"] });
-function Footer() {
+function FooterComponent() {
   return (
     <div className="h-[485px] w-full bg-[#2F3E35] px-[80px] py-[50px] text-white">
       <div className="flex h-[300px] gap-[300px]">
@@ -191,4 +189,4 @@ function Footer() {
   );
 }
 
-export default Footer;
+export default FooterComponent;

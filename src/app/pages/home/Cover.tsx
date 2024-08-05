@@ -1,12 +1,7 @@
 import React from "react";
-import { Noto_Serif } from "next/font/google";
+import noto from "@/assets/fonts";
 import { Button, Input, Select, SelectItem } from "@nextui-org/react";
-
-const noto = Noto_Serif({ subsets: ["latin"] });
-
-interface idProps {
-  id: string;
-}
+import { idProps } from "@/types/idProps";
 
 const Cover = ({ id }: idProps) => {
   return (

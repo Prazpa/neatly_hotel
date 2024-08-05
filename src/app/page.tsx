@@ -1,25 +1,24 @@
 "use client";
 
-import NavbarComponent from "@/components/Navbar/NavbarComponent";
-import Cover from "./home/Cover";
-import Introduction from "./home/Introduction";
-import Service from "./home/Service";
-import Rooms from "./home/Rooms";
-import Footer from "@/components/Footer/Footer";
-import Review from "./home/Review";
+import NavbarComponent from "@/components/Navbar";
+import Cover from "./pages/home/Cover";
+import Introduction from "./pages/home/Introduction";
+import ServiceSection from "./pages/home/Service";
+import RoomsSection from "./pages/home/Rooms";
+import ReviewsSection from "./pages/home/Review";
+import FooterComponent from "../components/Footer";
 
 
 export default function Homepage() {
-
   return (
     <div>
       <NavbarComponent />
-      <Cover id="cover"/>
-      <Introduction id="introduction"/>
-      <Service id="service"/>
-      <Rooms id="rooms"/>
-      <Review />
-      <Footer />
+      <Cover id="cover" />
+      <Introduction id="introduction" />
+      <ServiceSection id="service" />
+      <RoomsSection id="rooms" />
+      <ReviewsSection />
+      <FooterComponent />
     </div>
   );
 }

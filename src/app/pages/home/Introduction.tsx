@@ -1,19 +1,10 @@
 import React from "react";
-import { Noto_Serif } from "next/font/google";
-
+import noto from "@/assets/fonts"
 import Image from "next/image";
-
-import slice1 from "/home/prapakorn/doc/neatly_hotel/public/slice1.jpg";
-import slice2 from "/home/prapakorn/doc/neatly_hotel/public/slice2.jpg";
-import slice3 from "/home/prapakorn/doc/neatly_hotel/public/slice3.jpg";
-
-
-
-export const noto = Noto_Serif({ subsets: ["latin"] });
-
-interface idProps {
-  id: string;
-}
+import slice1 from "../../../../public/slice1.jpg";
+import slice2 from "../../../../public/slice2.jpg";
+import slice3 from "../../../../public/slice3.jpg";
+import { idProps } from "@/types/idProps";
 
 const Introduction = ({ id }: idProps) => {
   return (

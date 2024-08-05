@@ -1,15 +1,8 @@
 import React from "react";
-import { Noto_Serif } from "next/font/google";
-import Image from "next/image";
-import ImgHotel from "/home/prapakorn/doc/neatly_hotel/public/imageHotel.jpg";
+import noto from "@/assets/fonts"
+import { idProps } from "@/types/idProps";
 
-const noto = Noto_Serif({ subsets: ["latin"] });
-
-interface idProps {
-  id: string;
-}
-
-function Rooms({ id }: idProps) {
+function RoomsSection({ id }: idProps) {
   return (
     <div id={id} className=" h-auto w-full bg-white py-[80px] flex flex-col items-center ">
       <div>
@@ -78,4 +71,4 @@ function Rooms({ id }: idProps) {
   );
 }
 
-export default Rooms;
+export default RoomsSection;
