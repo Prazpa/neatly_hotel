@@ -1,41 +1,30 @@
 import React from "react";
 import noto from "@/assets/fonts";
-import { Button, Input, Select, SelectItem } from "@nextui-org/react";
+import { Button, Select, SelectItem, DatePicker} from "@nextui-org/react";
 import { idProps } from "@/types/idProps";
 
 const Cover = ({ id }: idProps) => {
   return (
-    <div
-      id={id}
-      className="flex h-[900px] flex-col items-center bg-[url('/cover.jpg')] py-[150px]"
-    >
-      <div className="h-[220px] w-auto px-[80px] text-center">
+    <div id={id} className="flex h-[800px] flex-col items-center bg-[url('/cover.jpg')]">
+      <div className="h-[195px] w-auto px-[80px] text-center mt-[189px]">
         <span className={`${noto.className} text-[88px] text-white`}>
           A Best Place for Your Neatly Experience
         </span>
       </div>
 
-      <div className="my-[100px] flex h-[196px] w-[75%] flex-wrap items-center justify-around rounded-md bg-white px-[20px]">
+      <div className="mt-[110px] flex h-[174px] w-[995px] py-[40px] flex-wrap justify-around rounded-sm bg-white px-[20px]">
         <div>
-          <span>Check In</span>
-          <Input
-            type="date"
-            className="h-[48px] w-[240px] rounded-lg border border-gray-500 text-gray-400"
-          />
+          <DatePicker label={"Check In"}  labelPlacement="outside" className="border-none h-[48px] w-[240px]  border text-gray-400" />
         </div>
 
         <div>
-          <span>Check Out</span>
-          <Input
-            type="date"
-            className="h-[48px] w-[240px] rounded-lg border border-gray-500 text-gray-400"
-          />
+        <DatePicker label={"Check Out"}  labelPlacement="outside" className="border-none h-[48px] w-[240px]  border text-gray-400" />
         </div>
 
-        <div>
-          <span>Room and Guests</span>
+        <div className="flex flex-col gap-y-[7px]">
+          <span className="text-[18px] text-[#3D4346]">Room and Guests</span>
           <Select
-            className="h-[48px] w-[240px] rounded-lg border border-gray-500 text-gray-400"
+            className="h-[48px] w-[240px] rounded-lg border text-gray-400"
             aria-label="Room and Guests"
           >
             <SelectItem key="1" className="bg-white">
@@ -47,8 +36,7 @@ const Cover = ({ id }: idProps) => {
           </Select>
         </div>
 
-        <div className="my-[0px] flex flex-col">
-          <span className="text-white">___________</span>
+        <div className="flex flex-col mt-[30px]">
           <Button type="submit" className="rounded-lg bg-orange-400 text-white">
             Search
           </Button>

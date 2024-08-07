@@ -1,15 +1,19 @@
 import React from "react";
-import noto from "@/assets/fonts"
-import Image from "next/image";
-import slice1 from "../../../../public/slice1.jpg";
-import slice2 from "../../../../public/slice2.jpg";
+import noto from "@/assets/fonts";
 import slice3 from "../../../../public/slice3.jpg";
 import { idProps } from "@/types/idProps";
+import EmblaCarousel from "@/components/Carousel/EmblaCarousel";
+import { EmblaOptionsType } from "embla-carousel";
+
+const images = [slice3, slice3, slice3, slice3, slice3, slice3, slice3];
+
+const OPTIONS: EmblaOptionsType = { align: "start" };
+const SLIDES = images;
 
 const Introduction = ({ id }: idProps) => {
   return (
     <div id={id}>
-      <div className="h-[1178px] w-full px-[80px] bg-white py-[100px]">
+      <div className="h-[1178px] w-full bg-white px-[80px] py-[100px]">
         <span
           className={`${noto.className} h-[220px] w-auto px-[80px] text-center text-[60px] text-black`}
         >
@@ -32,10 +36,8 @@ const Introduction = ({ id }: idProps) => {
           also rentals are provided to explore the area.
         </p>
 
-        <div className="flex justify-around py-[50px]">
-          <Image src={slice1} alt="1" width={300} height={400}/>
-          <Image src={slice2} alt="2" width={300} height={400}/>
-          <Image src={slice3} alt="3" width={300} height={400}/>
+        <div className="visible">
+          <EmblaCarousel slides={SLIDES} options={OPTIONS} />
         </div>
       </div>
     </div>

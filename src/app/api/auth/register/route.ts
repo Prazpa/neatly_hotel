@@ -1,21 +1,20 @@
 import { NextRequest, NextResponse } from "next/server";
-import pool from "@/config/config";
+import { PrismaClient } from "@prisma/client";
 import { hash } from "bcryptjs";
+
+const prisma = new PrismaClient();
 
 export async function POST(req: NextRequest) {
   try {
-    // ตรวจสอบว่า request เป็น multipart/form-data หรือไม่
     const contentType = req.headers.get("content-type") || "";
     if (!contentType.startsWith("multipart/form-data")) {
       return NextResponse.json(
         { message: "Invalid content type" },
-        { status: 400 },
+        { status: 400 }
       );
     }
 
-    // อ่านข้อมูลจาก request
     const formData = await req.formData();
-
     const fullname = formData.get("fullname") as string;
     const username = formData.get("username") as string;
     const email = formData.get("email") as string;
@@ -28,7 +27,6 @@ export async function POST(req: NextRequest) {
     const expiryDate = formData.get("expiry_date") as string;
     const cvc = formData.get("cvc") as string;
 
-    // ตรวจสอบว่าข้อมูลจำเป็นทั้งหมดมีอยู่
     if (
       !fullname ||
       !username ||
@@ -44,40 +42,37 @@ export async function POST(req: NextRequest) {
     ) {
       return NextResponse.json(
         { message: "All fields are required" },
-        { status: 400 },
+        { status: 400 }
       );
     }
 
-    // แฮชรหัสผ่าน
     const hashedPassword = await hash(password, 10);
 
-    // เพิ่มผู้ใช้ลงในฐานข้อมูล
-    await pool.query(
-      "INSERT INTO users (fullname, username, email, password, id_number, dob, country, card_number, card_owner, expiry_date, cvc) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)",
-      [
+    const user = await prisma.user.create({
+      data: {
         fullname,
         username,
         email,
-        hashedPassword,
-        idNumber,
-        dob,
+        password: hashedPassword,
+        id_number: idNumber,
+        dob: new Date(dob),
         country,
-        cardNumber,
-        cardOwner,
-        expiryDate,
-        cvc,
-      ],
-    );
+        card_number: cardNumber,
+        card_owner: cardOwner,
+        expiry_date: new Date(expiryDate),
+        cvc
+      }
+    });
 
     return NextResponse.json(
-      { message: "Registration successful" },
-      { status: 200 },
+      { message: "Registration successful", user },
+      { status: 200 }
     );
   } catch (error) {
     console.error("Error during registration:", error);
     return NextResponse.json(
       { message: "Internal Server Error" },
-      { status: 500 },
+      { status: 500 }
     );
   }
 }

@@ -33,10 +33,9 @@ const NavbarComponent = () => {
       <NavbarContent justify="end">
         <Button
           as={Link}
-          color="primary"
           href="/pages/login"
           variant="flat"
-          className={`${hoverStyle} text-orange-600 text-sm`}
+          className={`${hoverStyle} text-orange-600 text-sm bg-white`}
         >
           Login
         </Button>

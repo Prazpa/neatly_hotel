@@ -1,0 +1,26 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model User {
+  id          Int      @id @default(autoincrement())
+  fullname    String   @db.VarChar(255)
+  username    String   @db.VarChar(255)
+  email       String   @unique @db.VarChar(255)
+  password    String   @db.VarChar(255)
+  id_number   String   @db.VarChar(255)
+  dob         DateTime @db.Date
+  country     String   @db.VarChar(255)
+  profile_pic String?  @db.Text
+  card_number String   @db.VarChar(16)
+  card_owner  String   @db.VarChar(255)
+  expiry_date DateTime @db.Date
+  cvc         String   @db.VarChar(3)
+}
+
