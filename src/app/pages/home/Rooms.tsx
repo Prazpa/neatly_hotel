@@ -10,7 +10,7 @@ function RoomsSection({ id }: idProps) {
       </div>
 
       <div className="grid grid-cols-12 gap-4 min-w-[600px] max-w-[1000px]">
-        <div className="col-span-12 bg-red-600 h-[540px] p-[50px] flex flex-col justify-end items-start ">
+        <div className="col-span-12 bg-[url('/superiorGarden.jpg')] h-[540px] p-[50px] flex flex-col justify-end items-start ">
           <div className="text-white text-[44px]">
             <span className={`${noto.className}`}>Superior Garden View</span>
           </div>
@@ -19,7 +19,7 @@ function RoomsSection({ id }: idProps) {
           </div>
         </div>
  
-        <div className="col-span-7 bg-red-200 h-[400px] p-[50px] flex flex-col justify-end items-start">
+        <div className="col-span-7 bg-[url('/deluxe.jpg')] h-[400px] p-[50px] flex flex-col justify-end items-start">
           <div className="text-white text-[44px]">
             <span className={`${noto.className}`}>Deluxe</span>
           </div>

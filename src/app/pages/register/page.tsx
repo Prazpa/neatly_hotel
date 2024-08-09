@@ -1,55 +1,50 @@
 "use client";
-import React, { useState } from "react";
-import NavbarComponent from "@/components/Navbar";
-import { Button, Input } from "@nextui-org/react";
+import React from "react";
 import noto from "@/assets/fonts";
-import { formData } from "@/types/formData";
+import NavbarComponent from "@/components/Navbar";
+import { Button, Input,  } from "@nextui-org/react";
+import { useForm, SubmitHandler } from "react-hook-form";
+import Image from "next/image";
+import imgAddphoto from "../../../../public/Addphoto.png";
 
+type Inputs = {
+  fullname: string;
+  username: string;
+  email: string;
+  password: string;
+  id_number: string;
+  dob: string;
+  country: string;
+  profile_pic: FileList | null;
+  card_number: string;
+  card_owner: string;
+  expiry_date: string;
+  cvc: string;
+};
 
 const Register = () => {
-  const [formData, setFormData] = useState<formData>({
-    fullname: "",
-    username: "",
-    email: "",
-    password: "",
-    id_number: "",
-    dob: "",
-    country: "",
-    profile_pic: null,
-    card_number: "",
-    card_owner: "",
-    expiry_date: "",
-    cvc: "",
-  });
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<Inputs>();
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value, files } = e.target;
-    if (name === "profile_pic") {
-      setFormData((prevFormData: formData) => ({
-        ...prevFormData,
-        [name]: files?.[0] || null,
-      }));
-    } else {
-      setFormData((prevFormData: formData) => ({
-        ...prevFormData,
-        [name]: value,
-      }));
-    }
-  };
+  const onSubmit: SubmitHandler<Inputs> = async (data) => {
+    const formData = new FormData();
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const data = new FormData();
-    Object.entries(formData).forEach(([key, value]) => {
-      if (value !== null) {
-        data.append(key, value as string | Blob);
+    // Add all form fields to FormData
+    Object.entries(data).forEach(([key, value]) => {
+      if (key === "profile_pic" && value) {
+        formData.append(key, value[0]);
+      } else if (value) {
+        formData.append(key, value as string | Blob);
       }
     });
 
     try {
       const response = await fetch("/api/auth/register", {
         method: "POST",
-        body: data,
+        body: formData,
       });
 
       const result = await response.json();
@@ -63,120 +58,169 @@ const Register = () => {
     }
   };
 
+  const Required = <span>This field is required</span>;
+
   return (
     <div>
       <NavbarComponent />
       <div className="flex h-auto w-full justify-center rounded-md bg-[url('/cover.jpg')] py-[80px]">
-        <div className="flex w-[1000px] flex-col bg-white p-[50px]">
+        <div className="flex w-[1000px] flex-col gap-5 bg-white p-[50px]">
           <div>
             <span className={`${noto.className} text-[68px]`}>Register</span>
           </div>
-          <form onSubmit={handleSubmit} className="flex flex-col gap-5">
-            <Input
-              isRequired
-              type="text"
-              placeholder="Enter your name and last name"
-              name="fullname"
-              value={formData.fullname}
-              onChange={handleChange}
-            />
 
-            <Input
-              isRequired
-              type="text"
-              placeholder="Enter your username"
-              name="username"
-              value={formData.username}
-              onChange={handleChange}
-            />
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="flex flex-col gap-5"
+          >
+            <div className="flex flex-col gap-6">
+              <span>Basic Information</span>
+              <div className="flex flex-col gap-5">
+                <div>
+                  <Input
+                    label="Full Name"
+                    labelPlacement="outside"
+                    {...register("fullname", { required: true })}
+                    type="text"
+                    placeholder="Enter your name and last name"
+                  />
+                  {errors.fullname && Required}
+                </div>
+                <div className="grid grid-cols-2 gap-6">
+                  <div>
+                    <Input
+                      label="Username"
+                      labelPlacement="outside"
+                      {...register("username", { required: true })}
+                      type="text"
+                      placeholder="Enter your username"
+                      autoComplete="on"
+                    />
+                    {errors.username && Required}
+                  </div>
 
-            <Input
-              isRequired
-              type="email"
-              placeholder="Enter your email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-            />
+                  <div>
+                    <Input
+                      label="Email"
+                      labelPlacement="outside"
+                      {...register("email", { required: true })}
+                      type="email"
+                      placeholder="Enter your email"
+                      autoComplete="on"
+                    />
+                    {errors.email && Required}
+                  </div>
 
-            <Input
-              isRequired
-              type="password"
-              placeholder="Enter your password"
-              name="password"
-              value={formData.password}
-              onChange={handleChange}
-            />
+                  <div>
+                    <Input
+                      label="Password"
+                      labelPlacement="outside"
+                      {...register("password", { required: true })}
+                      type="password"
+                      placeholder="Enter your password"
+                      autoComplete="on"
+                    />
+                    {errors.password && Required}
+                  </div>
 
-            <Input
-              isRequired
-              type="text"
-              placeholder="Enter your ID Number"
-              name="id_number"
-              value={formData.id_number}
-              onChange={handleChange}
-            />
+                  <div>
+                    <Input
+                      label="ID Number"
+                      labelPlacement="outside"
+                      {...register("id_number", { required: true })}
+                      type="text"
+                      placeholder="Enter your ID Number"
+                    />
+                    {errors.id_number && Required}
+                  </div>
 
-            <Input
-              isRequired
-              type="date"
-              placeholder="Select your date of birth"
-              name="dob"
-              value={formData.dob}
-              onChange={handleChange}
-            />
+                  <div>
+                    <Input
+                      label="Date of Birth"
+                      labelPlacement="outside"
+                      {...register("dob", { required: true })}
+                      type="date"
+                      placeholder="Select your date of birth"
+                    />
+                    {errors.dob && Required}
+                  </div>
 
-            <Input
-              isRequired
-              type="text"
-              placeholder="Enter your country"
-              name="country"
-              value={formData.country}
-              onChange={handleChange}
-            />
+                  <div>
+                    <Input
+                      label="Country"
+                      labelPlacement="outside"
+                      {...register("country", { required: true })}
+                      type="country"
+                      placeholder="Enter your country"
+                      autoComplete="on"
+                    />
+                    {errors.country && Required}
+                  </div>
+                </div>
+              </div>
+            </div>
 
-            <Input
-              type="file"
-              placeholder="Upload photo"
-              name="profile_pic"
-              onChange={handleChange}
-            />
+            <div>
+              <span>Profile Picture</span>
+              <div>
+                <Image src={imgAddphoto} alt="add" width={100} height={100} />
+              </div>
 
-            <Input
-              isRequired
-              type="text"
-              placeholder="Enter your card number"
-              name="card_number"
-              value={formData.card_number}
-              onChange={handleChange}
-            />
+              <Input
+                {...register("profile_pic")}
+                type="file"
+                placeholder="Upload photo"
+              />
+            </div>
 
-            <Input
-              isRequired
-              type="text"
-              placeholder="Enter your card name"
-              name="card_owner"
-              value={formData.card_owner}
-              onChange={handleChange}
-            />
+            <div className="flex flex-col gap-5">
+              <span>Credit Card</span>
+              <div className="grid grid-cols-2 gap-6">
+                <div>
+                  <Input
+                    label="Card Number"
+                    labelPlacement="outside"
+                    {...register("card_number", { required: true })}
+                    type="text"
+                    placeholder="Enter your card number"
+                  />
+                  {errors.card_number && Required}
+                </div>
 
-            <Input
-              isRequired
-              type="date"
-              placeholder="MM/YY"
-              name="expiry_date"
-              value={formData.expiry_date}
-              onChange={handleChange}
-            />
+                <div>
+                  <Input
+                    label="Card Owner"
+                    labelPlacement="outside"
+                    {...register("card_owner", { required: true })}
+                    type="text"
+                    placeholder="Enter your card name"
+                  />
+                  {errors.card_owner && Required}
+                </div>
 
-            <Input
-              isRequired
-              type="text"
-              placeholder="CVC/CVV"
-              name="cvc"
-              value={formData.cvc}
-              onChange={handleChange}
-            />
+                <div>
+                  <Input
+                    label="Expiry Date"
+                    labelPlacement="outside"
+                    {...register("expiry_date", { required: true })}
+                    type="date"
+                    placeholder="MM/YY"
+                  />
+                  {errors.expiry_date && Required}
+                </div>
+
+                <div>
+                  <Input
+                    label="CVC/CVV"
+                    labelPlacement="outside"
+                    {...register("cvc", { required: true })}
+                    type="text"
+                    placeholder="CVC/CVV"
+                  />
+                  {errors.cvc && Required}
+                </div>
+              </div>
+            </div>
 
             <Button
               className="w-[400px] rounded-md bg-orange-600 text-white"

@@ -16,12 +16,12 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Use `findFirst` with `OR` condition to handle both email and username
+    
     const user = await prisma.user.findFirst({
       where: {
         OR: [
-          { email: email || "" }, // Handle empty email if not provided
-          { username: username || "" } // Handle empty username if not provided
+          { email: email || "" }, 
+          { username: username || "" } 
         ]
       }
     });

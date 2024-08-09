@@ -1,4 +1,5 @@
-//test connection with prisma and suparbase
+//test connection with prisma and suparbase 
+// command "tsx index.ts"
 import { PrismaClient } from '@prisma/client'
 
 const prisma = new PrismaClient()

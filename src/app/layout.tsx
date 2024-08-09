@@ -1,15 +1,13 @@
-import type { Metadata } from "next";
+"use client";
+
+import { NextUIProvider } from "@nextui-org/react";
+import { SessionProvider } from "next-auth/react";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { NextUIProvider } from "@nextui-org/react";
-
+import Head from "next/head";
+import Link from "next/link";
 
 const inter = Inter({ subsets: ["latin"] });
-
-export const metadata: Metadata = {
-  title: "Neatly Hotel",
-  description: "Fullstack Project for learning",
-};
 
 export default function RootLayout({
   children,
@@ -18,8 +16,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <Head>
+        <Link rel="icon" href="../../public/favicon.ico" />
+      </Head>
       <body className={inter.className}>
-        <NextUIProvider>{children}</NextUIProvider>
+        <SessionProvider>
+          <NextUIProvider>{children}</NextUIProvider>
+        </SessionProvider>
       </body>
     </html>
   );
