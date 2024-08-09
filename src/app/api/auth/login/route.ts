@@ -1,3 +1,4 @@
+// app/api/auth/route.ts
 import { NextRequest, NextResponse } from "next/server";
 import { PrismaClient } from "@prisma/client";
 import { compare } from "bcryptjs";
@@ -16,12 +17,11 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    
     const user = await prisma.user.findFirst({
       where: {
         OR: [
           { email: email || "" }, 
-          { username: username || "" } 
+          { username: username || "" }
         ]
       }
     });

@@ -1,4 +1,6 @@
+// app/login/page.tsx
 "use client";
+
 import React from "react";
 import { Input } from "@nextui-org/input";
 import { Button } from "@nextui-org/react";
@@ -7,51 +9,34 @@ import NavbarComponent from "@/components/Navbar";
 import Image from "next/image";
 import ImgHotel from "../../../../public/imageHotel.jpg";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { signIn, signOut, useSession } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import Homepage from "@/app/page";
 
-// Define the form inputs type
 interface Inputs {
   email: string;
   password: string;
 }
 
 const Login = () => {
-  // React Hook Form setup
   const { register, handleSubmit, formState: { errors } } = useForm<Inputs>();
-
-  // NextAuth session check
   const { data: session } = useSession();
 
-  // If the user is already signed in, show the sign out option
   if (session?.user) {
-    return (
-      <Homepage />
-    );
+    return <Homepage />;
   }
 
-  // Handle form submission for email/password login
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     try {
-      const response = await fetch("/api/auth/login", {
-        method: "POST",
-        body: JSON.stringify(data),
-        headers: {
-          "Content-Type": "application/json",
-        },
+      const result = await signIn("credentials", {
+        redirect: false,
+        email: data.email,
+        password: data.password,
       });
 
-      const responseData = await response.json();
-
-      if (response.ok) {
-        console.log("Login successful", responseData);
-        if (session?.user) {
-          return (
-            <Homepage />
-          );
-        }
+      if (result?.ok) {
+        console.log("Login successful");
       } else {
-        console.error("Login failed", responseData);
+        console.error("Login failed", result?.error);
       }
     } catch (error) {
       console.error("Error during login", error);
@@ -73,14 +58,20 @@ const Login = () => {
               <span className={`${noto.className} text-[60px]`}>Login</span>
 
               <Input
-                type="email"
-                placeholder="Enter your email"
+                label="Username or Email"
+                labelPlacement="outside"
+                autoComplete="on"
+                type="text"
+                placeholder="Enter your username or email"
                 className="rounded-lg border border-black"
                 {...register("email", { required: "Email is required" })}
               />
               {errors.email && <span className="text-red-500">{errors.email.message}</span>}
 
               <Input
+                label="Password"
+                labelPlacement="outside"
+                autoComplete="on"
                 type="password"
                 placeholder="Enter your password"
                 className="rounded-lg border border-black"
@@ -98,7 +89,7 @@ const Login = () => {
             </form>
             <div className="flex gap-2 mt-[20px]">
               <span>Don’t have an account yet?</span>
-              <a href="/pages/register" className="text-orange-600">
+              <a href="/register" className="text-orange-600">
                 Register
               </a>
             </div>
