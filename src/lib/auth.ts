@@ -1,10 +1,9 @@
-// app/api/auth/[...nextauth]/route.ts
 import NextAuth, { NextAuthOptions } from 'next-auth';
 import GitHubProvider from 'next-auth/providers/github';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import { compare } from 'bcryptjs';
 import { PrismaClient } from '@prisma/client';
-import { User } from '@/types/User'; // Adjust import based on your file structure
+import { User } from '@/types/User'; 
 import { JWT } from 'next-auth/jwt';
 
 const prisma = new PrismaClient();

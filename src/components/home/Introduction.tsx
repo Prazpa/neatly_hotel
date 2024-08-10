@@ -1,6 +1,6 @@
 import React from "react";
 import noto from "@/assets/fonts";
-import slice3 from "../../../../public/slice3.jpg";
+import slice3 from "../../../public/slice3.jpg";
 import { idProps } from "@/types/idProps";
 import EmblaCarousel from "@/components/Carousel/EmblaCarousel";
 import { EmblaOptionsType } from "embla-carousel";

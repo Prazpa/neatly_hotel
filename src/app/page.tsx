@@ -1,11 +1,11 @@
 "use client";
 
 import NavbarComponent from "@/components/Navbar";
-import Cover from "./pages/home/Cover";
-import Introduction from "./pages/home/Introduction";
-import ServiceSection from "./pages/home/Service";
-import RoomsSection from "./pages/home/Rooms";
-import ReviewsSection from "./pages/home/Review";
+import Cover from "../components/home/Cover";
+import Introduction from "../components/home/Introduction";
+import ServiceSection from "../components/home/Service";
+import RoomsSection from "../components/home/Rooms";
+import ReviewsSection from "../components/home/Review";
 import FooterComponent from "../components/Footer";
 
 

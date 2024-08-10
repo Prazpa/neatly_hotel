@@ -11,6 +11,7 @@ import ImgHotel from "../../../../public/imageHotel.jpg";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { signIn, useSession } from "next-auth/react";
 import Homepage from "@/app/page";
+import Link from "next/link";
 
 interface Inputs {
   email: string;
@@ -89,9 +90,9 @@ const Login = () => {
             </form>
             <div className="flex gap-2 mt-[20px]">
               <span>Don’t have an account yet?</span>
-              <a href="/register" className="text-orange-600">
+              <Link href="/register" className="text-orange-600">
                 Register
-              </a>
+              </Link>
             </div>
           </div>
         </div>
