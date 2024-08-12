@@ -1,26 +1,11 @@
 "use client";
-import React from "react";
+import React, { useRef, useState } from "react";
 import noto from "@/assets/fonts";
 import NavbarComponent from "@/components/Navbar";
-import { Button, Input,  } from "@nextui-org/react";
+import { Button, Input } from "@nextui-org/react";
 import { useForm, SubmitHandler } from "react-hook-form";
-import Image from "next/image";
-import imgAddphoto from "../../../../public/Addphoto.png";
-
-type Inputs = {
-  fullname: string;
-  username: string;
-  email: string;
-  password: string;
-  id_number: string;
-  dob: string;
-  country: string;
-  profile_pic: FileList | null;
-  card_number: string;
-  card_owner: string;
-  expiry_date: string;
-  cvc: string;
-};
+import UploadPhoto from "@/components/UploadPhoto";
+import { Inputs } from "@/types/Inputs";
 
 const Register = () => {
   const {
@@ -162,15 +147,7 @@ const Register = () => {
 
             <div>
               <span>Profile Picture</span>
-              <div>
-                <Image src={imgAddphoto} alt="add" width={100} height={100} />
-              </div>
-
-              <Input
-                {...register("profile_pic")}
-                type="file"
-                placeholder="Upload photo"
-              />
+              <UploadPhoto register={register}/>
             </div>
 
             <div className="flex flex-col gap-5">

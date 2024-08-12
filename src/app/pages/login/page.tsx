@@ -1,4 +1,3 @@
-// app/login/page.tsx
 "use client";
 
 import React from "react";
@@ -90,7 +89,7 @@ const Login = () => {
             </form>
             <div className="flex gap-2 mt-[20px]">
               <span>Don’t have an account yet?</span>
-              <Link href="/register" className="text-orange-600">
+              <Link href="/pages/register" className="text-orange-600">
                 Register
               </Link>
             </div>
