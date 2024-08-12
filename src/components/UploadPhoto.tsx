@@ -1,24 +1,16 @@
-import React, { useRef, useState } from 'react';
-import { UseFormRegister } from 'react-hook-form';
-
-interface Inputs {
-  fullname: string;
-  username: string;
-  email: string;
-  password: string;
-  id_number: string;
-  dob: string;
-  country: string;
-  profile_pic: FileList | null;
-  card_number: string;
-  card_owner: string;
-  expiry_date: string;
-  cvc: string;
-}
+import React, { useRef, useState } from "react";
+import { UseFormRegister } from "react-hook-form";
+import { Inputs } from "@/types/Inputs";
+import { createClient } from "@supabase/supabase-js";
 
 interface UploadPhotoProps {
   register: UseFormRegister<Inputs>;
 }
+
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+);
 
 const UploadPhoto: React.FC<UploadPhotoProps> = ({ register }) => {
   const [imageSrc, setImageSrc] = useState<string | null>(null);
@@ -30,28 +22,46 @@ const UploadPhoto: React.FC<UploadPhotoProps> = ({ register }) => {
     }
   };
 
-  const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleImageUpload = async (
+    event: React.ChangeEvent<HTMLInputElement>,
+  ) => {
     const file = event.target.files?.[0];
     if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setImageSrc(reader.result as string);
-      };
-      reader.readAsDataURL(file);
+      const dataURL = await new Promise<string>((resolve) => {
+        const reader = new FileReader();
+        reader.onloadend = () => resolve(reader.result as string);
+        reader.readAsDataURL(file);
+      });
+      setImageSrc(dataURL);
+
+      // Upload the file to Supabase Storage
+      const { data, error } = await supabase.storage
+        .from("photoupload")
+        .upload(`public/${file.name}`, file);
+
+      if (error) {
+        console.error("Error uploading file:", error.message);
+      } else {
+        console.log("File uploaded successfully:", data);
+      }
     }
   };
 
   return (
     <div
-      className="w-[148px] h-[148px] bg-[#F1F2F6] flex flex-col justify-center items-center rounded-sm cursor-pointer overflow-hidden"
+      className="flex h-[148px] w-[148px] cursor-pointer flex-col items-center justify-center overflow-hidden rounded-sm bg-[#F1F2F6]"
       onClick={handleDivClick}
     >
       {imageSrc ? (
-        <img src={imageSrc} alt="Uploaded" className="w-full h-full object-cover" />
+        <img
+          src={imageSrc}
+          alt="Uploaded"
+          className="h-full w-full object-cover"
+        />
       ) : (
         <>
-          <span className="text-orange-500 z-99">+</span>
-          <span className="text-orange-500 z-99 text-[14px]">Upload Photo</span>
+          <span className="z-99 text-orange-500">+</span>
+          <span className="z-99 text-[14px] text-orange-500">Upload Photo</span>
         </>
       )}
       <input

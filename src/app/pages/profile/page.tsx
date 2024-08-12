@@ -1,13 +1,16 @@
 "use client";
-import React from "react";
 import noto from "@/assets/fonts";
 import NavbarComponent from "@/components/Navbar";
-import { Button, Input } from "@nextui-org/react";
-import { useForm, SubmitHandler } from "react-hook-form";
 import UploadPhoto from "@/components/UploadPhoto";
 import { Inputs } from "@/types/Inputs";
+import { Button, Input } from "@nextui-org/react";
+import React from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { PrismaClient } from '@prisma/client' 
 
-const Register = () => {
+const prisma = new PrismaClient()
+
+function proflie() {
   const {
     register,
     handleSubmit,
@@ -27,19 +30,19 @@ const Register = () => {
     });
 
     try {
-      const response = await fetch("/api/auth/register", {
+      const response = await fetch("/api/auth/editProfile", {
         method: "POST",
         body: formData,
       });
 
       const result = await response.json();
       if (response.ok) {
-        console.log("Registration successful", result);
+        console.log("Edit profile successful", result);
       } else {
-        console.error("Registration failed", result);
+        console.error("Edit profile failed", result);
       }
     } catch (error) {
-      console.error("Error during registration", error);
+      console.error("Error during Edit profile", error);
     }
   };
 
@@ -50,8 +53,14 @@ const Register = () => {
       <NavbarComponent />
       <div className="flex h-auto w-full justify-center rounded-md bg-[url('/cover.jpg')] py-[80px]">
         <div className="flex w-[1000px] flex-col gap-5 bg-white p-[50px]">
-          <div>
-            <span className={`${noto.className} text-[68px]`}>Register</span>
+          <div className="flex justify-between">
+            <span className={`${noto.className} text-[68px]`}>Profile</span>
+            <Button
+              className="mt-[30px] w-[200px] rounded-md bg-orange-600 text-white"
+              type="submit"
+            >
+              Update Profile
+            </Button>
           </div>
 
           <form
@@ -67,7 +76,7 @@ const Register = () => {
                     labelPlacement="outside"
                     {...register("fullname", { required: true })}
                     type="text"
-                    placeholder="Enter your name and last name"
+                    placeholder={"${prisma.user?.fullname}"}
                   />
                   {errors.fullname && Required}
                 </div>
@@ -78,7 +87,7 @@ const Register = () => {
                       labelPlacement="outside"
                       {...register("username", { required: true })}
                       type="text"
-                      placeholder="Enter your username"
+                      placeholder={"${prisma.user?.username}"}
                       autoComplete="on"
                     />
                     {errors.username && Required}
@@ -90,22 +99,10 @@ const Register = () => {
                       labelPlacement="outside"
                       {...register("email", { required: true })}
                       type="email"
-                      placeholder="Enter your email"
+                      placeholder={"${prisma.user?.email}"}
                       autoComplete="on"
                     />
                     {errors.email && Required}
-                  </div>
-
-                  <div>
-                    <Input
-                      label="Password"
-                      labelPlacement="outside"
-                      {...register("password", { required: true })}
-                      type="password"
-                      placeholder="Enter your password"
-                      autoComplete="on"
-                    />
-                    {errors.password && Required}
                   </div>
 
                   <div>
@@ -114,7 +111,7 @@ const Register = () => {
                       labelPlacement="outside"
                       {...register("id_number", { required: true })}
                       type="text"
-                      placeholder="Enter your ID Number"
+                      placeholder={"${prisma.user?.id_number}"}
                     />
                     {errors.id_number && Required}
                   </div>
@@ -125,7 +122,7 @@ const Register = () => {
                       labelPlacement="outside"
                       {...register("dob", { required: true })}
                       type="date"
-                      placeholder="Select your date of birth"
+                      placeholder={"${prisma.user?.dob}"}
                     />
                     {errors.dob && Required}
                   </div>
@@ -136,7 +133,7 @@ const Register = () => {
                       labelPlacement="outside"
                       {...register("country", { required: true })}
                       type="country"
-                      placeholder="Enter your country"
+                      placeholder={"${prisma.user?.country}"}
                       autoComplete="on"
                     />
                     {errors.country && Required}
@@ -147,69 +144,13 @@ const Register = () => {
 
             <div>
               <span>Profile Picture</span>
-              <UploadPhoto register={register}/>
+              <UploadPhoto register={register} />
             </div>
-
-            <div className="flex flex-col gap-5">
-              <span>Credit Card</span>
-              <div className="grid grid-cols-2 gap-6">
-                <div>
-                  <Input
-                    label="Card Number"
-                    labelPlacement="outside"
-                    {...register("card_number", { required: true })}
-                    type="text"
-                    placeholder="Enter your card number"
-                  />
-                  {errors.card_number && Required}
-                </div>
-
-                <div>
-                  <Input
-                    label="Card Owner"
-                    labelPlacement="outside"
-                    {...register("card_owner", { required: true })}
-                    type="text"
-                    placeholder="Enter your card name"
-                  />
-                  {errors.card_owner && Required}
-                </div>
-
-                <div>
-                  <Input
-                    label="Expiry Date"
-                    labelPlacement="outside"
-                    {...register("expiry_date", { required: true })}
-                    type="date"
-                    placeholder="MM/YY"
-                  />
-                  {errors.expiry_date && Required}
-                </div>
-
-                <div>
-                  <Input
-                    label="CVC/CVV"
-                    labelPlacement="outside"
-                    {...register("cvc", { required: true })}
-                    type="text"
-                    placeholder="CVC/CVV"
-                  />
-                  {errors.cvc && Required}
-                </div>
-              </div>
-            </div>
-
-            <Button
-              className="w-[400px] rounded-md bg-orange-600 text-white"
-              type="submit"
-            >
-              Register
-            </Button>
           </form>
         </div>
       </div>
     </div>
   );
-};
+}
 
-export default Register;
+export default proflie;
