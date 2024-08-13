@@ -876,7 +876,7 @@
     "@react-aria/utils" "3.24.1"
     "@react-stately/utils" "3.10.1"
 
-"@nextui-org/table@2.0.39":
+"@nextui-org/table@^2.0.39", "@nextui-org/table@2.0.39":
   version "2.0.39"
   resolved "https://registry.npmjs.org/@nextui-org/table/-/table-2.0.39.tgz"
   integrity sha512-VYvmrQ6GliwmzukKLZ7Nxp3sFXdskWZp8/BjwROLFE9Zco22CC0++7VPG3ebOYAIhi4e1Je+QUTx4/eh2wZZgg==

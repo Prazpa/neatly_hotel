@@ -24,3 +24,21 @@ model User {
   cvc         String   @db.VarChar(3)
 }
 
+model CustomerBooking {
+  id            Int      @id @default(autoincrement())
+  CustomerName  String   @db.VarChar(255)
+  Guests        Int
+  Roomtype      String   @db.VarChar(255)
+  Amount        Int
+  Bedtype       String   @db.VarChar(255)
+  checkIn       DateTime @db.Date
+  checkOut      DateTime @db.Date
+}
+
+model Rooms {
+  id            Int      @id @default(autoincrement())
+  RoomNO        Int
+  Roomtype      String   @db.VarChar(255)
+  Bedtype       String   @db.VarChar(255)
+  status        String   @db.VarChar(255)
+}
