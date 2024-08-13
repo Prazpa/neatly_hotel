@@ -1,9 +1,15 @@
+import Sidebar from '@/components/admin/Sidebar'
 import React from 'react'
 
-function page() {
+function Bookingpage() {
   return (
-    <div>page</div>
+    <div className='flex'>
+      <Sidebar />
+      <div>
+        table
+      </div>
+  </div>
   )
 }
 
-export default page
+export default Bookingpage
