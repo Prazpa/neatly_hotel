@@ -1,16 +1,16 @@
-import React from 'react'
+import Roomtable from "@/components/admin/Roommanagement/Roomtable";
+import Sidebar from "@/components/admin/Sidebar";
+import React from "react";
 
-function page() {
+function Roommanagementpage() {
   return (
-    <div>
-      <div>
-        sidebar
-      </div>
-      <div>
-        table
+    <div className="flex w-full gap-[50px]">
+      <Sidebar />
+      <div className="flex w-[900px] content-center items-center">
+        <Roomtable />
       </div>
     </div>
-  )
+  );
 }
 
-export default page
+export default Roommanagementpage;

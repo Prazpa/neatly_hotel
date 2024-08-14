@@ -1,16 +1,16 @@
-import Sidebar from '@/components/admin/Sidebar'
-import Booktable from '@/components/Booking/booktable'
-import React from 'react'
+import Sidebar from "@/components/admin/Sidebar";
+import Booktable from "@/components/admin/Booking/booktable";
+import React from "react";
 
 function Bookingpage() {
   return (
-    <div className='w-full flex gap-[50px]'>
+    <div className="flex w-full gap-[50px]">
       <Sidebar />
-      <div className='w-[900px] flex items-center content-center'>
+      <div className="flex w-[900px] content-center items-center">
         <Booktable />
       </div>
-  </div>
-  )
+    </div>
+  );
 }
 
-export default Bookingpage
+export default Bookingpage;

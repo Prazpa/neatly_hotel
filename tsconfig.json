@@ -27,7 +27,7 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "src/config/config.ts",
-    "src/providers/user.ts"
+    "src/providers/AddData/user.ts"
   ],
   "exclude": ["node_modules"]
 }

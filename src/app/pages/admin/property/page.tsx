@@ -1,9 +1,16 @@
-import React from 'react'
+import Propertytable from "@/components/admin/property/Propertytable";
+import Sidebar from "@/components/admin/Sidebar";
+import React from "react";
 
 function page() {
   return (
-    <div>page</div>
-  )
+    <div className="flex w-full gap-[50px]">
+      <Sidebar />
+      <div className="flex w-[900px] content-center items-center">
+        <Propertytable />
+      </div>
+    </div>
+  );
 }
 
-export default page
+export default page;
