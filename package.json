@@ -9,10 +9,13 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@dnd-kit/core": "^6.1.0",
     "@nextui-org/avatar": "^2.0.32",
+    "@nextui-org/checkbox": "^2.1.4",
     "@nextui-org/date-picker": "^2.1.6",
     "@nextui-org/dropdown": "^2.1.29",
     "@nextui-org/react": "^2.4.6",
+    "@nextui-org/select": "^2.2.5",
     "@nextui-org/system": "^2.2.5",
     "@nextui-org/table": "^2.0.39",
     "@nextui-org/theme": "^2.2.9",

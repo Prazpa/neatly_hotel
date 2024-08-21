@@ -14,6 +14,7 @@ import {
 
 import { SearchIcon } from "../../../assets/svg/SearchIcon";
 import { columns, users } from "../../../providers/admin/Bookdata";
+import Link from "next/link";
 
 type UserType = (typeof users)[0];
 
@@ -155,7 +156,11 @@ const Booktable = () => {
         {(item) => (
           <TableRow key={item.id}>
             {(columnKey) => (
-              <TableCell>{renderCell(item, columnKey)}</TableCell>
+              <TableCell>
+                <Link href={`/admin/booking/${item.id}`}>
+                  {renderCell(item, columnKey)}
+                </Link>
+              </TableCell>
             )}
           </TableRow>
         )}

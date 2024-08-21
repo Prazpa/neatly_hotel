@@ -14,14 +14,14 @@ model User {
   username    String   @db.VarChar(255)
   email       String   @unique @db.VarChar(255)
   password    String   @db.VarChar(255)
-  id_number   String   @db.VarChar(255)
+  id_number   Int
   dob         DateTime @db.Date
   country     String   @db.VarChar(255)
   profile_pic String?  @db.Text
-  card_number String   @db.VarChar(16)
+  card_number Int
   card_owner  String   @db.VarChar(255)
   expiry_date DateTime @db.Date
-  cvc         String   @db.VarChar(3)
+  cvc         Int
 }
 
 model CustomerBooking {
@@ -44,12 +44,15 @@ model Rooms {
 }
 
 model Property {
-  id             Int      @id @default(autoincrement())
-  Image          String   @db.VarChar(255)
-  Roomtype       String   @db.VarChar(255)
-  Price          Int
-  PromotionPrice Int
-  Guests         Int
-  Bedtype        String   @db.VarChar(255)
-  RoomsSize      String   @db.VarChar(255)
+  id              Int      @id @default(autoincrement())
+  Roomtype        String   @db.VarChar(255)
+  RoomSize        Int
+  Bedtype         String   @db.VarChar(255)
+  Guests          Int
+  Price           Int
+  PromotionPrice  Int
+  RoomDescription String   @db.VarChar(255)
+  MainImage       String   @db.VarChar(255)
+  ImageGallery    String[] @db.VarChar(255)
+  Amenity         String[] @db.VarChar(255)
 }

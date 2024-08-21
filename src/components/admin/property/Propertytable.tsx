@@ -15,6 +15,7 @@ import {
 
 import { SearchIcon } from "@/assets/svg/SearchIcon";
 import { columns, users } from "@/providers/admin/Propertydats";
+import Link from "next/link";
 
 type UserType = (typeof users)[0];
 
@@ -96,7 +97,7 @@ const Propertytable = () => {
             onClear={() => setFilterValue("")}
             onValueChange={onSearchChange}
           />
-          <Button>+Create Room</Button>
+          <Link href="/pages/admin/property/addNewRoom">+ Create Room</Link>
         </div>
       </div>
     ),

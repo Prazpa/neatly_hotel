@@ -1,4 +1,4 @@
-import Propertytable from "@/components/admin/property/Propertytable";
+import Propertytable from "@/components/admin/Property/Propertytable";
 import Sidebar from "@/components/admin/Sidebar";
 import React from "react";
 
