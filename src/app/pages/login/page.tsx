@@ -1,19 +1,21 @@
 "use client";
-
 import React from "react";
+import Link from "next/link";
+import Image from "next/image";
+import noto from "@/assets/fonts";
+
 import { Input } from "@nextui-org/input";
 import { Button } from "@nextui-org/react";
-import noto from "@/assets/fonts";
+
+import Homepage from "@/app/page";
 import NavbarComponent from "@/components/Navbar";
-import Image from "next/image";
+
 import ImgHotel from "../../../../public/imageHotel.jpg";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { signIn, useSession } from "next-auth/react";
-import Homepage from "@/app/page";
-import Link from "next/link";
 
 interface Inputs {
-  email: string;
+  credential: string;
   password: string;
 }
 
@@ -29,7 +31,7 @@ const Login = () => {
     try {
       const result = await signIn("credentials", {
         redirect: false,
-        email: data.email,
+        credential: data.credential, // This will handle both username or email
         password: data.password,
       });
 
@@ -64,9 +66,16 @@ const Login = () => {
                 type="text"
                 placeholder="Enter your username or email"
                 className="rounded-lg border border-black"
-                {...register("email", { required: "Email is required" })}
+                {...register("credential", { 
+                  required: "Username or Email is required", 
+                  validate: (value) => {
+                    const isEmail = /\S+@\S+\.\S+/.test(value);
+                    const isUsername = /^[a-zA-Z0-9_]+$/.test(value);
+                    return isEmail || isUsername || "Please enter a valid email or username";
+                  }
+                })}
               />
-              {errors.email && <span className="text-red-500">{errors.email.message}</span>}
+              {errors.credential && <span className="text-red-500">{errors.credential.message}</span>}
 
               <Input
                 label="Password"

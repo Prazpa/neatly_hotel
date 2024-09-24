@@ -1,4 +1,3 @@
-// app/api/auth/route.ts
 import { NextRequest, NextResponse } from "next/server";
 import { PrismaClient } from "@prisma/client";
 import { compare } from "bcryptjs";

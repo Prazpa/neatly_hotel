@@ -12,21 +12,45 @@ import {
 import React, { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { DndContext } from "@dnd-kit/core";
-import { Draggable } from "@/components/dndkit/Draggable";
-import { Droppable } from "@/components/dndkit/Dropgable";
+import { PrismaClient } from '@prisma/client';
+
+// import { Draggable } from "@/components/dndkit/Draggable";
+// import { Droppable } from "@/components/dndkit/Dropgable";
+
+const prisma = new PrismaClient();
 
 function AddNewRoom() {
   const { register, handleSubmit } = useForm<any>();
   const [isSelected, setIsSelected] = useState(false);
+  
   const bedtypes = [
-    { key: "singleBed", label: "Single Bed" },
-    { key: "doubleBed", label: "Double Bed" },
-    { key: "kingSizeBed", label: "King Size Bed" },
-    { key: "twinBed", label: "Twin Bed" },
+    { key: 'singleBed', label: 'Single Bed' },
+    { key: 'doubleBed', label: 'Double Bed' },
+    { key: 'kingSizeBed', label: 'King Size Bed' },
+    { key: 'twinBed', label: 'Twin Bed' },
   ];
 
-  const onSubmit: SubmitHandler<FormData> = async (data) => {
-    console.log(data);
+  const onSubmit: SubmitHandler<any> = async (data) => {
+    try {
+      const response = await fetch('/api/property', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+  
+      if (!response.ok) {
+        throw new Error('Failed to create room');
+      }
+  
+      const result = await response.json();
+      console.log('New room created:', result);
+      // Redirect or show success message here
+    } catch (error) {
+      console.error('Failed to create room:', error);
+      // Handle the error, e.g., show an error message
+    }
   };
 
   return (

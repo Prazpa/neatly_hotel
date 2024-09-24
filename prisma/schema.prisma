@@ -50,7 +50,7 @@ model Property {
   Bedtype         String   @db.VarChar(255)
   Guests          Int
   Price           Int
-  PromotionPrice  Int
+  PromotionPrice  Int?    
   RoomDescription String   @db.VarChar(255)
   MainImage       String   @db.VarChar(255)
   ImageGallery    String[] @db.VarChar(255)

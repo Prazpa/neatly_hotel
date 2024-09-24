@@ -30,10 +30,10 @@
     "embla-carousel-react": "^8.1.8",
     "framer-motion": "^11.3.8",
     "multer": "^1.4.5-lts.1",
-    "next": "14.2.5",
+    "next": "^14.2.13",
     "next-auth": "^4.24.7",
-    "react": "^18",
-    "react-dom": "^18",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
     "react-hook-form": "^7.52.2"
   },
   "devDependencies": {
@@ -43,7 +43,7 @@
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "eslint": "^8",
-    "eslint-config-next": "14.2.5",
+    "eslint-config-next": "^14.2.13",
     "postcss": "^8",
     "prettier": "^3.3.3",
     "prettier-plugin-tailwindcss": "^0.6.5",
